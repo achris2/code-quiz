@@ -31,10 +31,11 @@
 
 // DOM Elements 
 const timerEl = document.getElementById ("time");
+const startScreen = document.getElementById("start-screen");
 const startBtn = document.querySelector(".start");
 const questionContainer = document.getElementById("questions");
 const questionTitle = document.getElementById("question-title");
-const questionChoices = document.getElementById("choices)");
+const questionChoices = document.getElementById("choices");
 let currentQuestionIndex = 0;     
 let timeLeft = 10; 
 // 
@@ -56,12 +57,18 @@ startBtn.addEventListener('click', function() {
   
     // check if there are questiosn to display or if the time has run out 
     if (currentQuestionIndex < myQuestions.length && timeLeft > 0){
+            // hide home screen
+            startScreen.classList.add('hide');
             // change question container from 'null' to display block
             questionContainer.style.display = "block";
             // get the current question 
             const currentQuestion = myQuestions[currentQuestionIndex];
             // update question title 
             questionTitle.textContent = currentQuestion.question;
+            // update question choices 
+            
+          } else if (timeLeft === 0 || currentQuestionIndex === myQuestions.length){
+
           }
         
 

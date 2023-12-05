@@ -1,6 +1,55 @@
-// this should contain all of the questions 
+const myQuestions = [
+    {
+        question: "Commonly used data types DO NOT include:",
+        answers: {
+            1: 'strings',
+            2: 'booleans',
+            3: 'alerts',
+            4: 'numbers',
+        },
+        correctAnswer: 3 
+    },
+    {
+        question: "Commonly used data types DO NOT include:",
+        answers: {
+            1: 'strings',
+            2: 'booleans',
+            3: 'alerts',
+            4: 'numbers',
+        },
+        correctAnswer: 3 
+    },
+    {
+        question: "Commonly used data types DO NOT include:",
+        answers: {
+            1: 'strings',
+            2: 'booleans',
+            3: 'alerts',
+            4: 'numbers',
+        },
+        correctAnswer: 3 
+    },
+    {
+        question: "Commonly used data types DO NOT include:",
+        answers: {
+            1: 'strings',
+            2: 'booleans',
+            3: 'alerts',
+            4: 'numbers',
+        },
+        correctAnswer: 3 
+    },
+]
 
-// const questions = ['
+
+
+// // "Commonly used data types DO NOT include:
+// 1. Strings
+// 2. booleans
+// 3. alerts
+// 4. numbers
+
+// //"
 
 
 // array of objects, each object is a question 

@@ -4,8 +4,7 @@ const highscores = [
     {
         initial: 'BB',
         score: 58, 
-    }
-
+    },
 ];
 
 const highscoresfromstorage = localStorage.getItem('highscores'); // string array of objects 

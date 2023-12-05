@@ -28,7 +28,43 @@
 
 // start button that when clicked a timer starts and the first question appears
 
+
+// DOM Elements 
+const timerEl = document.getElementById ("time");
 const startBtn = document.querySelector(".start");
+const questionContainer = document.getElementById("questions");
+const questionTitle = document.getElementById("question-title");
+const questionChoices = document.getElementById("choices)");
+let currentQuestionIndex = 0;     
+let timeLeft = 10; 
+// 
 startBtn.addEventListener('click', function() {
-    alert ('hello');
-});
+    // Update the timer 
+    timerEl.textContent = timeLeft; 
+    // Update the countdown every second 
+    const countdownInterval = setInterval(updateCountdown, 1000);
+
+    function updateCountdown(){
+        if (timeLeft >= 0) {
+        timeLeft --;
+        } 
+        // else, if timeLeft = 0, display high scores
+
+        // update timer display 
+        timerEl.textContent = timeLeft;
+    }
+  
+    // check if there are questiosn to display or if the time has run out 
+    if (currentQuestionIndex < myQuestions.length && timeLeft > 0){
+            // change question container from 'null' to display block
+            questionContainer.style.display = "block";
+            // get the current question 
+            const currentQuestion = myQuestions[currentQuestionIndex];
+            // update question title 
+            questionTitle.textContent = currentQuestion.question;
+          }
+        
+
+    }
+    );
+

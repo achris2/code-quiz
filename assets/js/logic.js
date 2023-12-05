@@ -36,9 +36,18 @@ const startBtn = document.querySelector(".start");
 const questionContainer = document.getElementById("questions");
 const questionTitle = document.getElementById("question-title");
 const questionChoices = document.getElementById("choices");
+const endScreen = document.getElementById("end-screen");
+const finalScore = document.getElementById("final-score");
+const initialsInput = document.getElementById("initials");
+const submitBtn = document.getElementById("submit");
+
+// initialising question index 
 let currentQuestionIndex = 0;     
-let timeLeft = 10; 
-// 
+let timeLeft = 10; // set initial timer
+let score = 0; 
+
+// event listener for start button 
+
 startBtn.addEventListener('click', function() {
     // Update the timer 
     timerEl.textContent = timeLeft; 
@@ -48,17 +57,21 @@ startBtn.addEventListener('click', function() {
     function updateCountdown(){
         if (timeLeft >= 0) {
         timeLeft --;
-        } 
-        // else, if timeLeft = 0, display high scores
-
+        } else {
+                 // else, if timeLeft = 0, end the quiz
+                 clearInterval(countdownInterval); 
+                 endQuiz();
+        }
         // update timer display 
         timerEl.textContent = timeLeft;
     }
-  
+    // hide home screen
+    startScreen.classList.add('hide');
+
+    // show question container 
+
     // check if there are questiosn to display or if the time has run out 
     if (currentQuestionIndex < myQuestions.length && timeLeft > 0){
-            // hide home screen
-            startScreen.classList.add('hide');
             // change question container from 'null' to display block
             questionContainer.style.display = "block";
             // get the current question 
@@ -66,7 +79,7 @@ startBtn.addEventListener('click', function() {
             // update question title 
             questionTitle.textContent = currentQuestion.question;
             // update question choices 
-            
+
           } else if (timeLeft === 0 || currentQuestionIndex === myQuestions.length){
 
           }

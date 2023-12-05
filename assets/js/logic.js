@@ -44,8 +44,8 @@ const highScores = [];
 
 // initialising question index 
 let currentQuestionIndex = 0;     
-let timeLeft = 5; // set initial timer
-let score = 120; 
+let timeLeft = 100; // set initial timer
+let score = 100; 
 
 // event listener for start button 
 
@@ -108,13 +108,12 @@ function checkAnswer(selectedAnswer){
     const currentQuestion = myQuestions[currentQuestionIndex];
     // check if selected answer is right or wrong 
     if (selectedAnswer === currentQuestion.answers[currentQuestion.correctAnswer]){
-        alert ('the answer is correct, you gain 10 points!')
-        // if the answer is correct, add 10 points to score 
-        score += 10; 
+        alert ('the answer is correct!')
     } else {
         // if answer is incorrect, subtract 10 seconds from time left; 
         alert ('sorry, the answer is wrong, 10 seconds deducted')
         timeLeft -= 10; 
+        score -= 10; 
         // so it doesn't show negative time 
         if (timeLeft<0){
             timeLeft = 0;

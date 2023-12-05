@@ -24,9 +24,9 @@ https://achris2.github.io/code-quiz
 
 ## Screenshot
 
-```md
-![alt text](../code-quiz/assets/screenshot.png)
-```
+
+![Screenshot of the application](https://achris2.github.io/code-quiz/assets/screenshot.png)
+
 
 ## Credits
 

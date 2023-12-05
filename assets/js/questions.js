@@ -10,32 +10,32 @@ const myQuestions = [
         correctAnswer: 3 
     },
     {
-        question: "Commonly used data types DO NOT include:",
+        question: "Arrays in JavaScript can be used to store ______.",
         answers: {
-            1: 'strings',
-            2: 'booleans',
-            3: 'alerts',
-            4: 'numbers',
+            1: 'numbers and strings',
+            2: 'other arrays',
+            3: 'booleans',
+            4: 'all of the above',
         },
-        correctAnswer: 3 
+        correctAnswer: 4 
     },
     {
-        question: "Commonly used data types DO NOT include:",
+        question: "What method in JavaScript adds one or more elements to the end of an array and returns the new length of the array?",
         answers: {
-            1: 'strings',
-            2: 'booleans',
-            3: 'alerts',
-            4: 'numbers',
+            1: 'push',
+            2: 'pop',
+            3: 'shift',
+            4: 'unshift',
         },
-        correctAnswer: 3 
+        correctAnswer: 1 
     },
     {
-        question: "Commonly used data types DO NOT include:",
+        question: "In JavaScript, what method is used to remove the last element from an array and returns that element?",
         answers: {
-            1: 'strings',
-            2: 'booleans',
-            3: 'alerts',
-            4: 'numbers',
+            1: 'slice',
+            2: 'splice',
+            3: 'pop',
+            4: 'shift',
         },
         correctAnswer: 3 
     },

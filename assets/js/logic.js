@@ -43,7 +43,7 @@ const submitBtn = document.getElementById("submit");
 
 // initialising question index 
 let currentQuestionIndex = 0;     
-let timeLeft = 10; // set initial timer
+let timeLeft = 2; // set initial timer
 let score = 0; 
 
 // event listener for start button 
@@ -65,26 +65,68 @@ startBtn.addEventListener('click', function() {
         // update timer display 
         timerEl.textContent = timeLeft;
     }
+
     // hide home screen
     startScreen.classList.add('hide');
 
-    // show question container 
+    // change question container from 'null' to display block
+    questionContainer.style.display = "block";
 
-    // check if there are questiosn to display or if the time has run out 
-    if (currentQuestionIndex < myQuestions.length && timeLeft > 0){
-            // change question container from 'null' to display block
-            questionContainer.style.display = "block";
-            // get the current question 
-            const currentQuestion = myQuestions[currentQuestionIndex];
-            // update question title 
-            questionTitle.textContent = currentQuestion.question;
-            // update question choices 
+    // display the 1st question 
+    showQuestion ();
+}
+);
 
-          } else if (timeLeft === 0 || currentQuestionIndex === myQuestions.length){
 
-          }
-        
+function showQuestion (){ 
+    // get the current question 
+    const currentQuestion = myQuestions[currentQuestionIndex];
+    // update question title 
+    questionTitle.textContent = currentQuestion.question;
+    
+    // clear previous choices 
+    questionChoices.innerHTML = "";
 
+    // loop through choices and create buttons 
+
+    for (const key in currentQuestion.answers){
+        if (currentQuestion.answers.hasOwnProperty(key)) {
+            const choiceButton = document.createElement("button");
+            choiceButton.textContent = currentQuestion.answers[key];
+            choiceButton.addEventListener("click", function(){
+                // event listener for the click when user chooses answer
+                checkanswer(this.textContent);
+            });
+            questionChoices.appendChild(choiceButton);
+        }
     }
-    );
+}
 
+function endQuiz(){
+    // hide questions container 
+    questionContainer.style.display = null; 
+    
+    // display end screen
+    endScreen.style.display = "block";
+
+    // display final score 
+
+    
+    submitBtn.addEventListener("click",function(){
+
+    })
+}
+
+
+
+// // check if there are questiosn to display or if the time has run out 
+// if (currentQuestionIndex < myQuestions.length && timeLeft > 0){
+
+   
+    
+
+//     // update question choices 
+
+//     } else if (timeLeft === 0 || currentQuestionIndex === myQuestions.length){
+
+//     }

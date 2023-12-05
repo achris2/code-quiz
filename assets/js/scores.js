@@ -11,8 +11,7 @@ const highscoresfromstorage = localStorage.getItem('highscores'); // string arra
 
 
 // if high score from storage 
-highscoresfromstorage = [
-]
+highscoresfromstorage = []
 
 const newScore = {
     initial: document.getElementById('initials').values, // initials from inputs
@@ -31,4 +30,3 @@ highscoresfromstorage.push(newScore);
         initial: 'CC', 
         score: 15 
     }
-}

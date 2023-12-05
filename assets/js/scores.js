@@ -1,32 +1,56 @@
-// high score array, with objects 
+// initialise high scores 
 
-const highscores = [
+const highScores = [
     {
-        initial: 'BB',
-        score: 58, 
+        initial: 'AB',
+        score: 100, 
+    },
+    {
+        initial: 'BC',
+        score: 80, 
+    },
+    {
+        initial: 'CD',
+        score: 22, 
     },
 ];
 
-const highscoresfromstorage = localStorage.getItem('highscores'); // string array of objects 
+// // Retrieve high scores from local storage or initialize an empty array
+const newScore = JSON.parse(localStorage.getItem('newScore'));
+highScores.push(newScore);
 
 
-// if high score from storage 
-highscoresfromstorage = []
+// DOM Elements
+const highScoresList = document.getElementById('highscores');
+const clearBtn = document.getElementById('clear');
 
-const newScore = {
-    initial: document.getElementById('initials').values, // initials from inputs
-    score: timeRemaining, 
+// Function to render high scores
+function renderHighScores() {
+    // Clear existing list
+    highScoresList.innerHTML = '';
+
+    // Sort high scores in descending order
+    const sortedScores = [...highScores].sort((a, b) => b.score - a.score);
+
+    // Loop through high scores and create list items
+    sortedScores.forEach((score, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${score.initial} - ${score.score}`;
+        highScoresList.appendChild(listItem);
+    });
 }
 
+// Function to clear high scores
+function clearHighScores() {
+    // Clear high scores from local storage and array
+    localStorage.removeItem('highScores');
+    highScores.length = 0;
+    // Render the updated high scores list
+    renderHighScores();
+}
 
-highscoresfromstorage.push(newScore);
+// Event listener for clear button
+clearBtn.addEventListener('click', clearHighScores);
 
-// highscoresFromStorage = {
-    {
-        initial: 'BB',
-        score: 58, 
-    }, 
-    {
-        initial: 'CC', 
-        score: 15 
-    }
+// Event listener for window load to render initial high scores
+window.addEventListener('load', renderHighScores);

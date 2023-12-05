@@ -40,11 +40,12 @@ const endScreen = document.getElementById("end-screen");
 const finalScore = document.getElementById("final-score");
 const initialsInput = document.getElementById("initials");
 const submitBtn = document.getElementById("submit");
+const highScores = [];
 
 // initialising question index 
 let currentQuestionIndex = 0;     
-let timeLeft = 2; // set initial timer
-let score = 0; 
+let timeLeft = 5; // set initial timer
+let score = 120; 
 
 // event listener for start button 
 
@@ -57,7 +58,7 @@ startBtn.addEventListener('click', function() {
     function updateCountdown(){
         if (timeLeft >= 0) {
         timeLeft --;
-        } else {
+        } else if (timeLeft <= 0 || currentQuestionIndex < myQuestions.length) {
                  // else, if timeLeft = 0, end the quiz
                  clearInterval(countdownInterval); 
                  endQuiz();
@@ -95,38 +96,88 @@ function showQuestion (){
             choiceButton.textContent = currentQuestion.answers[key];
             choiceButton.addEventListener("click", function(){
                 // event listener for the click when user chooses answer
-                checkanswer(this.textContent);
+                checkAnswer(this.textContent);
             });
             questionChoices.appendChild(choiceButton);
         }
     }
 }
 
+function checkAnswer(selectedAnswer){
+    // pulls current question from questions object 
+    const currentQuestion = myQuestions[currentQuestionIndex];
+    // check if selected answer is right or wrong 
+    if (selectedAnswer === currentQuestion.answers[currentQuestion.correctAnswer]){
+        alert ('the answer is correct, you gain 10 points!')
+        // if the answer is correct, add 10 points to score 
+        score += 10; 
+    } else {
+        // if answer is incorrect, subtract 10 seconds from time left; 
+        alert ('sorry, the answer is wrong, 10 seconds deducted')
+        timeLeft -= 10; 
+        // so it doesn't show negative time 
+        if (timeLeft<0){
+            timeLeft = 0;
+        }
+    }
+    // go through next question 
+    currentQuestionIndex++; 
+
+    // check if there are any more quesitons 
+    if (currentQuestionIndex < myQuestions.length){
+        showQuestion();
+    } else {
+        // end the quiz 
+        endQuiz();
+    }
+}
+// addScore 
+            function addScore(initials, score) {
+                const newScore = {
+                    initial: initials,
+                    score: score,
+                }
+                                // add new score to the highScores array
+                                highScores.push(newScore);    
+                                // Save highScores array to local storage
+                                localStorage.setItem('highScores', JSON.stringify(highScores)); 
+            }
+
+        
+            
+
 function endQuiz(){
     // hide questions container 
     questionContainer.style.display = null; 
+
+    // stop timer
+    timerEl.textContent = score; 
+    
     
     // display end screen
     endScreen.style.display = "block";
 
     // display final score 
-
-    
-    submitBtn.addEventListener("click",function(){
-
-    })
+    finalScore.textContent = score;
 }
-
-
-
-// // check if there are questiosn to display or if the time has run out 
-// if (currentQuestionIndex < myQuestions.length && timeLeft > 0){
-
-   
+    // submit initials and score 
+    submitBtn.addEventListener("click", function () {
+        const initials = initialsInput.value.trim();
     
-
-//     // update question choices 
-
-//     } else if (timeLeft === 0 || currentQuestionIndex === myQuestions.length){
-
-//     }
+        if (initials !== "") {
+            // Define newScore within the if block
+            const newScore = {
+                initial: initials,
+                score: score,
+            };
+            console.log(localStorage);
+            addScore(newScore);
+            console.log(newScore);
+                // add new score to the highScores array
+            highScores.push(newScore);    
+            // Save highScores array to local storage
+            localStorage.setItem('newScore', JSON.stringify(newScore));
+    //   redirect to high scores page 
+        window.location.href = 'highscores.html'
+    }
+        })

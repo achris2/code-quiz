@@ -15,7 +15,7 @@ const highScores = [
     },
 ];
 
-// // Retrieve high scores from local storage or initialize an empty array
+// // Retrieve high scores from local storage
 const newScore = JSON.parse(localStorage.getItem('newScore'));
 highScores.push(newScore);
 
